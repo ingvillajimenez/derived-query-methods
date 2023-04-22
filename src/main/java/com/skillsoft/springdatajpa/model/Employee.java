@@ -1,6 +1,7 @@
 package com.skillsoft.springdatajpa.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Employee")
@@ -10,14 +11,19 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Column(unique = true)
     private String email;
+    private int level;
+    private Date birthDate;
 
     public Employee() {
     }
 
-    public Employee(String name, String email) {
+    public Employee(String name, String email, int level, Date birthDate) {
         this.name = name;
         this.email = email;
+        this.level = level;
+        this.birthDate = birthDate;
     }
 
     public Long getId() {
@@ -44,12 +50,30 @@ public class Employee {
         this.email = email;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", name='" + name + "\'" +
-                ", email='" + email + "\'" +
-                "}";
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", level=" + level +
+                ", birthDate=" + birthDate +
+                '}'+'\n';
     }
 }
